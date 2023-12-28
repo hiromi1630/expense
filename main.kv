@@ -1,0 +1,73 @@
+#:kivy 2.2.1
+
+<InputForm>:
+	Label:
+		font_size: 70
+		text: "[input_form]"
+		top: root.top-root.height/6
+		center_x: root.center_x
+	Label:
+		font_size: 70
+		text: "Date"
+		top: root.top-root.height/6 - 90
+		center_x: 200
+	TextInput:
+		font_size: 70
+		top: root.top-root.height/6 - 90
+		center_x: 400
+		size: root.width / 2, self.font_size * 7 / 4
+		multiline: False
+	Label:
+		font_size: 70
+		text: "Content"
+		top: root.top-root.height/6 - 240
+		center_x: 200
+	TextInput:
+		font_size: 70
+		top: root.top-root.height/6 - 240
+		center_x: 400
+		size: root.width / 2, self.font_size * 7 / 4
+		multiline: False
+	Label:
+		font_size: 70
+		text: "Money"
+		top: root.top-root.height/6 - 390
+		center_x: 200
+	TextInput:
+		font_size: 70
+		top: root.top-root.height/6 - 390
+		center_x: 400
+		size: root.width / 2, self.font_size * 7 / 4
+		multiline: False
+	Button:
+		text: "Register"
+		font_size: 70
+		size: 300,100
+		top: root.top-root.height/6 - 600
+		center_x: root.center_x
+		color: 0,1,1,1
+
+
+
+
+<Expense>:
+	Button:
+        size: 150,75
+        pos: 0,root.top - self.height
+        text: "input"
+        font_size: 40
+        color: 0,1,0,1
+	Button:
+        size: 150,75
+        pos: 150,root.top - self.height
+        text: "show"
+        font_size: 40
+        color: 0,1,0,1
+	Button:
+        size: 150,75
+        pos: root.width - self.width,root.top - self.height
+        text: "exit"
+        font_size: 40
+        color: 1,0,0,1
+	InputForm:
+		size: root.width,root.height

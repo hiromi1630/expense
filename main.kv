@@ -6,32 +6,40 @@
 		size: root.width / 4 * 3, root.height / 6 * 5
 		center_x: root.center_x
 		Label:
-			font_size: 70
+			font_size: 60
 			text: "[入力フォーム]"
 		Label:
-			font_size: 70
+			font_size: 60
 			text: "日付"
 		TextInput:
 			id: input_date
-			font_size: 70
+			font_size: 60
 			multiline: False
 		Label:
-			font_size: 70
+			font_size: 60
+			text: "種別"
+		Spinner:
+			id: input_item_code
+			text: "食費"
+			values: "食費", "交通費", "書籍代", "娯楽費", "収入", "その他"
+			font_size: 60
+		Label:
+			font_size: 60
 			text: "内容"
 		TextInput:
 			id: input_content
-			font_size: 70
+			font_size: 60
 			multiline: False
 		Label:
-			font_size: 70
+			font_size: 60
 			text: "金額"
 		TextInput:
 			id: input_money
-			font_size: 70
+			font_size: 60
 			multiline: False
 		Button:
 			text: "登録"
-			font_size: 70
+			font_size: 60
 			color: 0,1,1,1
 			on_press: root.expense_register()
 

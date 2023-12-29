@@ -1,51 +1,39 @@
 #:kivy 2.2.1
 
 <InputForm>:
-	Label:
-		font_size: 70
-		text: "[入力フォーム]"
-		top: root.top-root.height/6
+	BoxLayout:
+		orientation: 'vertical'
+		size: root.width / 4 * 3, root.height / 6 * 5
 		center_x: root.center_x
-	Label:
-		font_size: 70
-		text: "日付"
-		top: root.top-root.height/6 - 90
-		center_x: 200
-	TextInput:
-		font_size: 70
-		top: root.top-root.height/6 - 90
-		center_x: 400
-		size: root.width / 2, self.font_size * 7 / 4
-		multiline: False
-	Label:
-		font_size: 70
-		text: "内容"
-		top: root.top-root.height/6 - 240
-		center_x: 200
-	TextInput:
-		font_size: 70
-		top: root.top-root.height/6 - 240
-		center_x: 400
-		size: root.width / 2, self.font_size * 7 / 4
-		multiline: False
-	Label:
-		font_size: 70
-		text: "金額"
-		top: root.top-root.height/6 - 390
-		center_x: 200
-	TextInput:
-		font_size: 70
-		top: root.top-root.height/6 - 390
-		center_x: 400
-		size: root.width / 2, self.font_size * 7 / 4
-		multiline: False
-	Button:
-		text: "登録"
-		font_size: 70
-		size: 300,100
-		top: root.top-root.height/6 - 600
-		center_x: root.center_x
-		color: 0,1,1,1
+		Label:
+			font_size: 70
+			text: "[入力フォーム]"
+		Label:
+			font_size: 70
+			text: "日付"
+		TextInput:
+			id: input_date
+			font_size: 70
+			multiline: False
+		Label:
+			font_size: 70
+			text: "内容"
+		TextInput:
+			id: input_content
+			font_size: 70
+			multiline: False
+		Label:
+			font_size: 70
+			text: "金額"
+		TextInput:
+			id: input_money
+			font_size: 70
+			multiline: False
+		Button:
+			text: "登録"
+			font_size: 70
+			color: 0,1,1,1
+			on_press: root.expense_register()
 
 
 

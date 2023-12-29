@@ -4,6 +4,7 @@ from kivy.app import App
 from kivy.uix.widget import Widget
 from kivy.uix.button import Button
 
+# 支出・収入種別のリスト
 item_list = ["食費", "交通費", "書籍代", "娯楽費", "収入", "その他"]
 
 class InputForm(Widget):
@@ -73,12 +74,8 @@ try:
 	"""
 	# itemテーブルへリファレンスデータの登録
 	c.execute(ddl)
-	c.execute("INSERT INTO item(item_name) VALUES('食費');")
-	c.execute("INSERT INTO item(item_name) VALUES('交通費');")
-	c.execute("INSERT INTO item(item_name) VALUES('書籍代');")
-	c.execute("INSERT INTO item(item_name) VALUES('娯楽費');")
-	c.execute("INSERT INTO item(item_name) VALUES('収入');")
-	c.execute("INSERT INTO item(item_name) VALUES('その他');")
+	for i in item_list:
+		c.execute(f"INSERT INTO item(item_name) VALUES('{i}');")
 	c.execute("COMMIT;")
 except:
     pass

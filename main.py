@@ -34,6 +34,9 @@ class InputForm(Widget):
 			print("エラーにより登録できませんでした")
 
 
+class OutputForm(Widget):
+	pass
+
 class Expense(Widget):
 	pass
 

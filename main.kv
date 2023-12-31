@@ -44,6 +44,35 @@
 			on_press: root.expense_register()
 
 
+<OutputForm>:
+	BoxLayout:
+		orientation: "vertical"
+		size: root.width / 4 * 3, root.height / 6 * 5
+		center_x: root.center_x
+		Label:
+			text: "[表示画面]"
+			font_size: 60
+		BoxLayout:
+			orientation: "horizontal"
+			size_x: root.width / 4 * 3
+			center_x: root.center_x
+			Label:
+				text: "期間"
+				font_size: 60
+			TextInput:
+				size: 200,60
+				font_size: 60
+			Label:
+				text: "~"
+				font_size: 60
+			TextInput:
+				size: 200,60
+				font_size: 60
+		Button:
+			text: "表示"
+			font_size: 60
+
+
 
 
 <Expense>:
@@ -66,6 +95,10 @@
         font_size: 40
         color: 1,0,0,1
 	InputForm:
+		size: root.width,root.height
+		disabled: True
+		opacity: 0.0
+	OutputForm:
 		size: root.width,root.height
 		disabled: False
 		opacity: 1.0

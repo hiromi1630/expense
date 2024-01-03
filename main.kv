@@ -43,27 +43,85 @@
 			color: 0,1,1,1
 			on_press: root.expense_register()
 
+<OutputForm>:
+	FloatLayout:
+		size_hint: None,None
+		size: root.width, root.height / 6 * 5
+		center_x: root.center_x
+		Label:
+			text: "[表示画面]"
+			font_size: 60
+			size_hint: None,None
+			center_x: root.center_x
+			top: root.top - root.height / 8
+		BoxLayout:
+			orientation: "horizontal"
+			size_hint: None,None
+			size_x: root.width
+			size_y: root.height / 8
+			pos_hint: {'x': 0.2, 'top': 0.9}
+			spacing: 10
+			Label:
+				size_hint: None,None
+				text: "期間"
+				font_size: 60
+				pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+			TextInput:
+				size_hint: None,None
+				size: 250,60
+				font_size: 40
+				pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+				multiline: False
+			Label:
+				size_hint: None,None
+				text: "～"
+				font_size: 60
+				pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+			TextInput:
+				size_hint: None,None
+				size: 250,60
+				font_size: 40
+				pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+				multiline: False
+		Button:
+			size_hint: None,None
+			size: 150, 60
+			pos_hint: {'center_x': 0.5, 'top': 0.75}
+			text: "表示"
+			font_size: 60
 
 
 
 <Expense>:
-	Button:
-        size: 150,75
-        pos: 0,root.top - self.height
-        text: "入力"
-        font_size: 40
-        color: 0,1,0,1
-	Button:
-        size: 150,75
-        pos: 150,root.top - self.height
-        text: "表示"
-        font_size: 40
-        color: 0,1,0,1
-	Button:
-        size: 150,75
-        pos: root.width - self.width,root.top - self.height
-        text: "終了"
-        font_size: 40
-        color: 1,0,0,1
-	InputForm:
-		size: root.width,root.height
+	FloatLayout:
+		Button:
+			size_hint: None,None
+			size: 150,75
+			pos: 0,root.top - self.height
+			text: "入力"
+			font_size: 40
+			color: 0,1,0,1
+		Button:
+			size_hint: None,None
+			size: 150,75
+			pos: 150,root.top - self.height
+			text: "表示"
+			font_size: 40
+			color: 0,1,0,1
+		Button:
+			size_hint: None,None
+			size: 150,75
+			pos: root.width - self.width,root.top - self.height
+			text: "終了"
+			font_size: 40
+			color: 1,0,0,1
+		InputForm:
+			size_hint: None,None
+			size: root.width,root.height
+			disable: True
+			opacity: 0.0
+		OutputForm:
+			size_hint: None,None
+			size: root.width,root.height
+			disable: False
+			opacity: 1.0

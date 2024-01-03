@@ -3,8 +3,28 @@ import sqlite3
 from kivy.app import App
 from kivy.uix.widget import Widget
 from kivy.uix.button import Button
+from kivy.uix.recycleview import RecycleView
 
 item_list = ["食費", "交通費", "書籍代", "娯楽費", "収入", "その他"]
+
+
+
+class DataTable(RecycleView):
+	def get_data_from_database(self):
+		sql = """
+		SELECT acc_date,item_name,content,amount
+		FROM acc_data as a,item as i
+		WHERE a.item_code = i.item_code
+		ORDER BY acc_date
+		"""
+		cursor = c.execute(sql)
+		data1 = cursor.fetchall()
+		# テーブルヘッダーとデータを結合
+		header = [col[0] for col in cursor.description]
+		rows = [header] + list(data1)
+		# データの表示
+		self.data = [{'text': str(col)} for row in rows for col in row]
+		print(self.data)
 
 class InputForm(Widget):
 	# 家計簿登録処理
@@ -40,7 +60,9 @@ class Expense(Widget):
 
 class MainApp(App):
 	def build(self):
+		self.dataTable_instance = DataTable()
 		return Expense()
+	
 
 
 def create_database(c):

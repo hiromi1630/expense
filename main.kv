@@ -43,6 +43,26 @@
 			color: 0,1,1,1
 			on_press: root.expense_register()
 
+
+
+<DataTable>:
+	viewclass: 'Label'
+	size: root.width, root.height
+	data: []
+	RecycleGridLayout:
+		cols: 4
+		font_size: 60
+		default_size: None, dp(40)
+		default_size_hint: 1, None
+		size_hint_y: None
+		height: self.minimum_height if self.minimum_height > 0 else dp(40)  # データがない場合は 40 に設定
+		canvas.before:
+			Color:
+				rgba: 1, 1, 1, 1  # 枠線の色を指定します
+			Line:
+				width: 1  # 枠線の太さを指定します
+				rectangle: self.x, self.y, self.width, self.height
+
 <OutputForm>:
 	FloatLayout:
 		size_hint: None,None
@@ -89,6 +109,15 @@
 			pos_hint: {'center_x': 0.5, 'top': 0.75}
 			text: "表示"
 			font_size: 60
+			on_press:
+				app.dataTable_instance.get_data_from_database()
+				root.ids.data_table.data = app.dataTable_instance.data
+		DataTable:
+			id: data_table
+			pos_hint: {'center_x': 0.5, "top": 0.65}
+			size_hint: 1, 0.7
+			font_size: 60
+
 
 
 

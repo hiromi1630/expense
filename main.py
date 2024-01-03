@@ -10,11 +10,19 @@ item_list = ["食費", "交通費", "書籍代", "娯楽費", "収入", "その�
 
 
 class DataTable(RecycleView):
-	def get_data_from_database(self):
-		sql = """
+	def get_data_from_database(self, start, end):
+		self.data = []
+		if start == "":
+			start = "1900-01-01"
+		if end == "":
+			end = "2100-01-01"
+		print(start)
+		print(end)
+		sql = f"""
 		SELECT acc_date,item_name,content,amount
 		FROM acc_data as a,item as i
-		WHERE a.item_code = i.item_code
+		WHERE a.item_code = i.item_code AND
+		acc_date BETWEEN date('{start}') AND date('{end}')
 		ORDER BY acc_date
 		"""
 		cursor = c.execute(sql)
@@ -23,7 +31,12 @@ class DataTable(RecycleView):
 		header = ['日付', '種別', '内訳', '金額']
 		rows = [header] + list(data1)
 		# データの表示
-		self.data = [{'text': str(col)} for row in rows for col in row]
+		for row in rows:
+			for i in range(4):
+				d = str(row[i])
+				if i == 3 and d != "金額":
+					d = f"￥{d}"
+				self.data.append({'text': d})
 		print(self.data)
 
 class InputForm(Widget):
@@ -41,7 +54,7 @@ class InputForm(Widget):
 		try:
 			c.execute(f"""
 			INSERT INTO acc_data(acc_date, item_code, content, amount)
-			VALUES('{date}',{item_code},'{content}',{money})
+			VALUES(date('{date}'),{item_code},'{content}',{money})
 			""")
 			c.execute("COMMIT;")
 			# 入力フォーム内のテキストを削除(重複登録防止)

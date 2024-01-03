@@ -87,6 +87,7 @@
 				font_size: 60
 				pos_hint: {'center_x': 0.5, 'center_y': 0.5}
 			TextInput:
+				id: output_start
 				size_hint: None,None
 				size: 250,60
 				font_size: 40
@@ -98,6 +99,7 @@
 				font_size: 60
 				pos_hint: {'center_x': 0.5, 'center_y': 0.5}
 			TextInput:
+				id: output_end
 				size_hint: None,None
 				size: 250,60
 				font_size: 40
@@ -110,7 +112,7 @@
 			text: "表示"
 			font_size: 60
 			on_press:
-				app.dataTable_instance.get_data_from_database()
+				app.dataTable_instance.get_data_from_database(start=root.ids.output_start.text, end=root.ids.output_end.text)
 				root.ids.data_table.data = app.dataTable_instance.data
 		DataTable:
 			id: data_table

@@ -130,6 +130,11 @@
 			text: "入力"
 			font_size: 40
 			color: 0,1,0,1
+			on_press:
+				root.ids.input.opacity = 1.0
+				root.ids.input.disable = False
+				root.ids.output.opacity = 0.0
+				root.ids.output.disable = True
 		Button:
 			size_hint: None,None
 			size: 150,75
@@ -137,6 +142,11 @@
 			text: "表示"
 			font_size: 40
 			color: 0,1,0,1
+			on_press:
+				root.ids.input.opacity = 0.0
+				root.ids.input.disable = True
+				root.ids.output.opacity = 1.0
+				root.ids.output.disable = False
 		Button:
 			size_hint: None,None
 			size: 150,75
@@ -145,12 +155,14 @@
 			font_size: 40
 			color: 1,0,0,1
 		InputForm:
-			size_hint: None,None
-			size: root.width,root.height
-			disable: True
-			opacity: 0.0
-		OutputForm:
+			id: input
 			size_hint: None,None
 			size: root.width,root.height
 			disable: False
 			opacity: 1.0
+		OutputForm:
+			id: output
+			size_hint: None,None
+			size: root.width,root.height
+			disable: True
+			opacity: 0.0

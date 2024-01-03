@@ -20,7 +20,7 @@ class DataTable(RecycleView):
 		cursor = c.execute(sql)
 		data1 = cursor.fetchall()
 		# テーブルヘッダーとデータを結合
-		header = [col[0] for col in cursor.description]
+		header = ['日付', '種別', '内訳', '金額']
 		rows = [header] + list(data1)
 		# データの表示
 		self.data = [{'text': str(col)} for row in rows for col in row]

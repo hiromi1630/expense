@@ -40,49 +40,52 @@ class MainApp(App):
 	def build(self):
 		return Expense()
 
-# 空のデータベースを作成して接続する
-dbname = "database.db"
-c = sqlite3.connect(dbname)
-# 外部キー制約のオプションはデフォルトでは無効になっているため、これを有効にする
-c.execute("PRAGMA foreign_keys = 1")
 
-# 既にデータベースが存在する場合エラーになるので回避
-try:    
-	# itemテーブルの定義
-	ddl = """
-	CREATE TABLE item
-	(
-		item_code INTEGER PRIMARY KEY,
-		item_name TEXT NOT NULL UNIQUE
-	);
-	"""
-	# SQLの発行
-	c.execute(ddl)
+def create_database(c):
+	# 既にデータベースが存在する場合エラーになるので回避
+	try:    
+		# itemテーブルの定義
+		ddl = """
+		CREATE TABLE item
+		(
+			item_code INTEGER PRIMARY KEY,
+			item_name TEXT NOT NULL UNIQUE
+		);
+		"""
+		# SQLの発行
+		c.execute(ddl)
 
-	# acc_dataテーブルの定義
-	ddl = """
-	CREATE TABLE acc_data
-	( 
-		id INTEGER PRIMARY KEY AUTOINCREMENT,
-		acc_date DATE NOT NULL,
-		item_code INTEGER NOT NULL,
-		content TEXT NOT NULL,
-		amount INTEGER NOT NULL,
-		FOREIGN KEY(item_code) REFERENCES item(item_code)
-	);
-	"""
-	# itemテーブルへリファレンスデータの登録
-	c.execute(ddl)
-	c.execute("INSERT INTO item(item_name) VALUES('食費');")
-	c.execute("INSERT INTO item(item_name) VALUES('交通費');")
-	c.execute("INSERT INTO item(item_name) VALUES('書籍代');")
-	c.execute("INSERT INTO item(item_name) VALUES('娯楽費');")
-	c.execute("INSERT INTO item(item_name) VALUES('収入');")
-	c.execute("INSERT INTO item(item_name) VALUES('その他');")
-	c.execute("COMMIT;")
-except:
-    pass
+		# acc_dataテーブルの定義
+		ddl = """
+		CREATE TABLE acc_data
+		( 
+			id INTEGER PRIMARY KEY AUTOINCREMENT,
+			acc_date DATE NOT NULL,
+			item_code INTEGER NOT NULL,
+			content TEXT NOT NULL,
+			amount INTEGER NOT NULL,
+			FOREIGN KEY(item_code) REFERENCES item(item_code)
+		);
+		"""
+		# itemテーブルへリファレンスデータの登録
+		c.execute(ddl)
+		c.execute("INSERT INTO item(item_name) VALUES('食費');")
+		c.execute("INSERT INTO item(item_name) VALUES('交通費');")
+		c.execute("INSERT INTO item(item_name) VALUES('書籍代');")
+		c.execute("INSERT INTO item(item_name) VALUES('娯楽費');")
+		c.execute("INSERT INTO item(item_name) VALUES('収入');")
+		c.execute("INSERT INTO item(item_name) VALUES('その他');")
+		c.execute("COMMIT;")
+	except:
+			pass
 
 
 if __name__ == "__main__":
+	# 空のデータベースを作成して接続する
+	dbname = "database.db"
+	c = sqlite3.connect(dbname)
+	# 外部キー制約のオプションはデフォルトでは無効になっているため、これを有効にする
+	c.execute("PRAGMA foreign_keys = 1")
+	# データベース作成
+	create_database(c)
 	MainApp().run()

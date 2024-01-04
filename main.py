@@ -8,7 +8,33 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 
 item_list = ["食費", "交通費", "書籍代", "娯楽費", "収入", "その他"]
 
-
+class TotalForm(Screen):
+	def get_total_from_database(self, start, end):
+		if start == "":
+			start = "1900-01-01"
+		if end == "":
+			end = "2100-01-01"
+		print(start)
+		print(end)
+		sql = f"""
+		SELECT acc_date,item_name,content,amount
+		FROM acc_data as a,item as i
+		WHERE a.item_code = i.item_code AND
+		acc_date BETWEEN date('{start}') AND date('{end}')
+		ORDER BY acc_date
+		"""
+		cursor = c.execute(sql)
+		data = cursor.fetchall()
+		sum = [0,0,0,0,0,0]
+		for row in data:
+			sum[item_list.index(row[1])] += int(row[3])
+		self.ids.total_0.text = f"{item_list[0]}: ￥{sum[0]}"
+		self.ids.total_1.text = f"{item_list[1]}: ￥{sum[1]}"
+		self.ids.total_2.text = f"{item_list[2]}: ￥{sum[2]}"
+		self.ids.total_3.text = f"{item_list[3]}: ￥{sum[3]}"
+		self.ids.total_4.text = f"{item_list[4]}: ￥{sum[4]}"
+		self.ids.total_5.text = f"{item_list[5]}: ￥{sum[5]}"
+		
 
 class DataTable(RecycleView):
 	def get_data_from_database(self, start, end):
@@ -75,6 +101,7 @@ class MainApp(App):
 	def build(self):
 		self.dataTable_instance = DataTable()
 		self.sm = ScreenManager()
+		self.sm.add_widget(TotalForm(name='total'))
 		self.sm.add_widget(InputForm(name='input'))
 		self.sm.add_widget(OutputForm(name='output'))
 		return self.sm

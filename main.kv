@@ -1,5 +1,117 @@
 #:kivy 2.2.1
 
+<TotalForm>:
+	BoxLayout:
+		orientation: 'horizontal'
+		size: root.width, 75  # 例として適切な幅を設定
+		top: root.top
+		Button:
+			size_hint_y: None
+			size: 150, 75
+			pos: 0, root.top - self.height
+			text: "入力"
+			font_size: 40
+			color: 0, 1, 0, 1
+			on_press: root.manager.current = 'input'
+		Button:
+			size_hint_y: None
+			size: 150, 75
+			pos: 150, root.top - self.height
+			text: "表示"
+			font_size: 40
+			color: 0, 1, 0, 1
+		Button:
+			size_hint_y: None
+			size: 150, 75
+			pos: root.width - self.width, root.top - self.height
+			text: "終了"
+			font_size: 40
+			color: 1, 0, 0, 1
+
+	FloatLayout:
+		size_hint: None,None
+		size: root.width, root.height / 6 * 5
+		center_x: root.center_x
+		Label:
+			text: "[集計画面]"
+			font_size: 60
+			size_hint: None,None
+			center_x: root.center_x
+			top: root.top - root.height / 8
+		BoxLayout:
+			orientation: "horizontal"
+			size_hint: None,None
+			size_x: root.width
+			size_y: root.height / 8
+			pos_hint: {'x': 0.2, 'top': 0.9}
+			spacing: 10
+			Label:
+				size_hint: None,None
+				text: "期間"
+				font_size: 60
+				pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+			TextInput:
+				id: total_start
+				size_hint: None,None
+				size: 250,60
+				font_size: 40
+				pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+				multiline: False
+			Label:
+				size_hint: None,None
+				text: "～"
+				font_size: 60
+				pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+			TextInput:
+				id: total_end
+				size_hint: None,None
+				size: 250,60
+				font_size: 40
+				pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+				multiline: False
+		Button:
+			size_hint: None,None
+			on_press: root.get_total_from_database(start=root.ids.total_start.text, end=root.ids.total_end.text)
+			size: 150, 60
+			pos_hint: {'center_x': 0.5, 'top': 0.75}
+			text: "表示"
+			font_size: 60
+		Label:
+			size_hint: None,None
+			id: total_0
+			pos_hint: {'center_x': 0.5, 'top': 0.65}
+			text: "食費:"
+			font_size: 60
+		Label:
+			size_hint: None,None
+			id: total_1
+			pos_hint: {'center_x': 0.5, 'top': 0.55}
+			text: "交通費:"
+			font_size: 60
+		Label:
+			size_hint: None,None
+			id: total_2
+			pos_hint: {'center_x': 0.5, 'top': 0.45}
+			text: "書籍代:"
+			font_size: 60
+		Label:
+			size_hint: None,None
+			id: total_3
+			pos_hint: {'center_x': 0.5, 'top': 0.35}
+			text: "娯楽費:"
+			font_size: 60
+		Label:
+			size_hint: None,None
+			id: total_4
+			pos_hint: {'center_x': 0.5, 'top': 0.25}
+			text: "収入:"
+			font_size: 60
+		Label:
+			size_hint: None,None
+			id: total_5
+			pos_hint: {'center_x': 0.5, 'top': 0.15}
+			text: "その他:"
+			font_size: 60
 <InputForm>:
 	BoxLayout:
 		orientation: 'vertical'

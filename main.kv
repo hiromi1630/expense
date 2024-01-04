@@ -20,14 +20,14 @@
 			text: "表示"
 			font_size: 40
 			color: 0, 1, 0, 1
+			on_press: root.manager.current = 'output'
 		Button:
 			size_hint_y: None
 			size: 150, 75
-			pos: root.width - self.width, root.top - self.height
-			text: "終了"
+			pos: 150, root.top - self.height
+			text: "集計"
 			font_size: 40
-			color: 1, 0, 0, 1
-
+			color: 0, 1, 0, 1
 	FloatLayout:
 		size_hint: None,None
 		size: root.width, root.height / 6 * 5
@@ -133,11 +133,12 @@
 				color: 0,1,0,1
 				on_press: root.manager.current = 'output'
 			Button:
-				size: 150,75
-				pos: root.width - self.width,root.top - self.height
-				text: "終了"
+				size: 150, 75
+				pos: 150, root.top - self.height
+				text: "集計"
 				font_size: 40
-				color: 1,0,0,1
+				color: 0, 1, 0, 1
+				on_press: root.manager.current = 'total'
 		Label:
 			font_size: 60
 			text: "[入力フォーム]"
@@ -146,6 +147,8 @@
 			text: "日付"
 		TextInput:
 			id: input_date
+			size_hint_x: 3/4
+			pos_hint: {'center_x': 0.5}
 			font_size: 60
 			multiline: False
 		Label:
@@ -153,6 +156,8 @@
 			text: "種別"
 		Spinner:
 			id: input_item_code
+			size_hint_x: 3/4
+			pos_hint: {'center_x': 0.5}
 			text: "食費"
 			values: "食費", "交通費", "書籍代", "娯楽費", "収入", "その他"
 			font_size: 60
@@ -161,6 +166,8 @@
 			text: "内容"
 		TextInput:
 			id: input_content
+			size_hint_x: 3/4
+			pos_hint: {'center_x': 0.5}
 			font_size: 60
 			multiline: False
 		Label:
@@ -168,9 +175,13 @@
 			text: "金額"
 		TextInput:
 			id: input_money
+			size_hint_x: 3/4
+			pos_hint: {'center_x': 0.5}
 			font_size: 60
 			multiline: False
 		Button:
+			size_hint_x: 3/4
+			pos_hint: {'center_x': 0.5}
 			text: "登録"
 			font_size: 60
 			color: 0,1,1,1
@@ -219,10 +230,11 @@
 		Button:
 			size_hint_y: None
 			size: 150, 75
-			pos: root.width - self.width, root.top - self.height
-			text: "終了"
+			pos: 150, root.top - self.height
+			text: "集計"
 			font_size: 40
-			color: 1, 0, 0, 1
+			color: 0, 1, 0, 1
+			on_press: root.manager.current = 'total'
 
 	FloatLayout:
 		size_hint: None,None

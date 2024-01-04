@@ -101,9 +101,9 @@ class MainApp(App):
 	def build(self):
 		self.dataTable_instance = DataTable()
 		self.sm = ScreenManager()
-		self.sm.add_widget(TotalForm(name='total'))
 		self.sm.add_widget(InputForm(name='input'))
 		self.sm.add_widget(OutputForm(name='output'))
+		self.sm.add_widget(TotalForm(name='total'))
 		return self.sm
 	
 

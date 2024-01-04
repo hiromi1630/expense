@@ -4,6 +4,7 @@ from kivy.app import App
 from kivy.uix.widget import Widget
 from kivy.uix.button import Button
 from kivy.uix.recycleview import RecycleView
+from kivy.uix.screenmanager import ScreenManager, Screen
 
 item_list = ["食費", "交通費", "書籍代", "娯楽費", "収入", "その他"]
 
@@ -39,7 +40,7 @@ class DataTable(RecycleView):
 				self.data.append({'text': d})
 		print(self.data)
 
-class InputForm(Widget):
+class InputForm(Screen):
 	# 家計簿登録処理
 	def expense_register(self):
 		# 日付を読み取る
@@ -65,16 +66,18 @@ class InputForm(Widget):
 		except:
 			print("エラーにより登録できませんでした")
 
-class OutputForm(Widget):
+class OutputForm(Screen):
 	pass
 
-class Expense(Widget):
-	pass
+
 
 class MainApp(App):
 	def build(self):
 		self.dataTable_instance = DataTable()
-		return Expense()
+		self.sm = ScreenManager()
+		self.sm.add_widget(InputForm(name='input'))
+		self.sm.add_widget(OutputForm(name='output'))
+		return self.sm
 	
 
 

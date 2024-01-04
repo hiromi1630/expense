@@ -3,8 +3,29 @@
 <InputForm>:
 	BoxLayout:
 		orientation: 'vertical'
-		size: root.width / 4 * 3, root.height / 6 * 5
+		size: root.width, root.height / 6 * 5
 		center_x: root.center_x
+		BoxLayout:
+			orientation: 'horizontal'
+			Button:
+				size: 150,75
+				pos: 0,root.top - self.height
+				text: "入力"
+				font_size: 40
+				color: 0,1,0,1
+			Button:
+				size: 150,75
+				pos: 150,root.top - self.height
+				text: "表示"
+				font_size: 40
+				color: 0,1,0,1
+				on_press: root.manager.current = 'output'
+			Button:
+				size: 150,75
+				pos: root.width - self.width,root.top - self.height
+				text: "終了"
+				font_size: 40
+				color: 1,0,0,1
 		Label:
 			font_size: 60
 			text: "[入力フォーム]"
@@ -64,6 +85,33 @@
 				rectangle: self.x, self.y, self.width, self.height
 
 <OutputForm>:
+	BoxLayout:
+		orientation: 'horizontal'
+		size: root.width, 75  # 例として適切な幅を設定
+		top: root.top
+		Button:
+			size_hint_y: None
+			size: 150, 75
+			pos: 0, root.top - self.height
+			text: "入力"
+			font_size: 40
+			color: 0, 1, 0, 1
+			on_press: root.manager.current = 'input'
+		Button:
+			size_hint_y: None
+			size: 150, 75
+			pos: 150, root.top - self.height
+			text: "表示"
+			font_size: 40
+			color: 0, 1, 0, 1
+		Button:
+			size_hint_y: None
+			size: 150, 75
+			pos: root.width - self.width, root.top - self.height
+			text: "終了"
+			font_size: 40
+			color: 1, 0, 0, 1
+
 	FloatLayout:
 		size_hint: None,None
 		size: root.width, root.height / 6 * 5
@@ -123,48 +171,3 @@
 
 
 
-<Expense>:
-	FloatLayout:
-		Button:
-			size_hint: None,None
-			size: 150,75
-			pos: 0,root.top - self.height
-			text: "入力"
-			font_size: 40
-			color: 0,1,0,1
-			on_press:
-				root.ids.input.opacity = 1.0
-				root.ids.input.disable = False
-				root.ids.output.opacity = 0.0
-				root.ids.output.disable = True
-		Button:
-			size_hint: None,None
-			size: 150,75
-			pos: 150,root.top - self.height
-			text: "表示"
-			font_size: 40
-			color: 0,1,0,1
-			on_press:
-				root.ids.input.opacity = 0.0
-				root.ids.input.disable = True
-				root.ids.output.opacity = 1.0
-				root.ids.output.disable = False
-		Button:
-			size_hint: None,None
-			size: 150,75
-			pos: root.width - self.width,root.top - self.height
-			text: "終了"
-			font_size: 40
-			color: 1,0,0,1
-		InputForm:
-			id: input
-			size_hint: None,None
-			size: root.width,root.height
-			disable: False
-			opacity: 1.0
-		OutputForm:
-			id: output
-			size_hint: None,None
-			size: root.width,root.height
-			disable: True
-			opacity: 0.0
